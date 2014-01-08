@@ -1,0 +1,28 @@
+{
+  "name": "oefenweb/cakephp-edexml",
+  "version": "0.0.1",
+  "description": "An Edexml parser / validator Plugin for CakePHP",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp", "edexml"
+  ],
+  "homepage": "http://github.com/Oefenweb/cakephp-edexml",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oefenweb",
+			"homepage": "https://github.com/Oefenweb/cakephp-edexml/contributors"
+    }
+  ],
+  "require": {
+		"php": ">=5.3.10",
+    "composer/installers": "*"
+  },
+  "support": {
+    "issues": "https://github.com/Oefenweb/cakephp-edexml/issues",
+    "source": "https://github.com/Oefenweb/cakephp-edexml"
+  },
+  "extra": {
+    "installer-name": "Edexml"
+  }
+}
