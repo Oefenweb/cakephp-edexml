@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			<versie>1.03</versie>
+			<auteur>Frederik Bonte en Geert Evers</auteur>
+			<omschrijving>Dit document bevat een uitwerking van toevoegingsblok: Computerprgramma LVS versie 4</omschrijving>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="EDEXML.structuur.xsd"/>
+	<xs:include schemaLocation="EDEXML.types.lvs.xsd"/>
+	<xs:complexType name="LVSGegevensType">
+		<xs:complexContent>
+			<xs:extension base="ToevoegingsBlokType">
+				<xs:sequence>
+					<xs:element name="rugzakleerling" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="gezinsstimuleringsproject" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="opleiding_ouders" type="EDEXOpleidingOudersType" minOccurs="0"/>
+					<xs:element name="asielzoeker" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="thuistaal" type="EDEXThuistaalType" minOccurs="0"/>
+					<xs:element name="taalgroep" type="EDEXTaalgroepType" minOccurs="0"/>
+					<xs:element name="instroomwijze" type="EDEXInstroomwijzeType" minOccurs="0"/>
+					<xs:element name="peuterspeelzaal" type="EDEXPeuterspeelzaalType" minOccurs="0"/>
+					<xs:element name="kinderdagverblijf" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="uitstroomreden" type="EDEXUitstroomredenType" minOccurs="0"/>
+					<xs:element name="adviesvo" type="EDEXAdviesVOType" minOccurs="0"/>
+					<xs:element name="lwooindicatie" type="EDEXLwooIndicatieType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

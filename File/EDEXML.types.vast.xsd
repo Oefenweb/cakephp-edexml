@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" finalDefault="extension">
+	<xs:annotation>
+		<xs:documentation>
+			<versie>1.03</versie>
+			<auteur>Geert Evers en Gerrit Jansen</auteur>
+			<omschrijving>Dit document definieert de vaste EDEX typen voor de EDEX Mark-up Language EDEXML</omschrijving>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="EDEXGeslachtType">
+		<xs:annotation>
+			<xs:documentation>Geslacht leerling volgens NEN-ISO 5218.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Onbekend</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Jongen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Meisje</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Niet gespecificeerd</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXKeyType">
+		<xs:annotation>
+			<xs:documentation>Een Key is een identificerende code van een object, die bij voorkeur uniek is.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXSofinummerType">
+		<xs:annotation>
+			<xs:documentation>Negen cijferig sofinummer</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\p{Nd}{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXOnderwijsnummerType">
+		<xs:annotation>
+			<xs:documentation>Negen cijferig onderwijsnummer</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\p{Nd}{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXPostcodeNlType">
+		<xs:annotation>
+			<xs:documentation>Postcode Nederlands woonadres leerling. Formaat 9999XX.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\p{Nd}{4}\p{Lu}{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXBrincodeType">
+		<xs:annotation>
+			<xs:documentation>Brincode school. Formaat 99XX.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\p{Nd}{2}\p{Lu}{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXDependancecodeType">
+		<xs:annotation>
+			<xs:documentation>Optionele aanvullende twee cijferige dependancecode bij Brincoder</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\p{Nd}{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXString32Type">
+		<xs:annotation>
+			<xs:documentation>String met minimale lengte 1 en maximale lengte 32.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXString64Type">
+		<xs:annotation>
+			<xs:documentation>String met minimale lengte 1 en maximale lengte 64.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXString128Type">
+		<xs:annotation>
+			<xs:documentation>String met minimale lengte 1 en maximale lengte 128.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXAchternaamType">
+		<xs:annotation>
+			<xs:documentation>NEN 1888 Achternaam.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXVoorvoegselType">
+		<xs:annotation>
+			<xs:documentation>NEN 1888 Voorvoegsel.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDEXVoorletters-1Type">
+		<xs:annotation>
+			<xs:documentation>NEN 1888 Voorletters-1.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>
+			<versie>1.03</versie>
+			<auteur>Geert Evers en Gerrit Jansen</auteur>
+			<omschrijving>Dit document definieert de objecten van de EDEX Mark-up Language EDEXML</omschrijving>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="EDEXML.types.vast.xsd"/>
+	<xs:include schemaLocation="EDEXML.types.variabel.xsd"/>
+	<xs:complexType name="SchoolType" final="extension">
+		<xs:sequence>
+			<xs:element name="schooljaar" type="EDEXSchooljaarType"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="brincode" type="EDEXBrincodeType"/>
+					<xs:element name="dependancecode" type="EDEXDependancecodeType" minOccurs="0"/>
+					<xs:element name="schoolkey" type="EDEXKeyType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element name="schoolkey" type="EDEXKeyType" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="aanmaakdatum" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="auteur" type="EDEXString128Type" minOccurs="0"/>
+			<xs:element name="xsdversie" type="EDEXString32Type" minOccurs="0"/>
+			<xs:element name="commentaar" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroepType" final="extension">
+		<xs:sequence>
+			<xs:element name="naam" type="EDEXString64Type"/>
+			<xs:element name="jaargroep" type="EDEXJaargroepType"/>
+			<xs:element name="mutatiedatum" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="EDEXKeyType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GroepsReferentieType" final="extension">
+		<xs:attribute name="key" type="EDEXKeyType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GroepenReferentieType" final="extension">
+		<xs:sequence>
+			<xs:element name="groep" type="GroepsReferentieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ToevoegingsBlokType" abstract="true">
+		<xs:sequence>
+			<xs:element name="code" type="EDEXString64Type"/>
+			<xs:element name="omschrijving" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LeerlingType" final="extension">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="achternaam" type="EDEXAchternaamType"/>
+					<xs:element name="voorvoegsel" type="EDEXVoorvoegselType" minOccurs="0"/>
+					<xs:element name="voorletters-1" type="EDEXVoorletters-1Type" minOccurs="0"/>
+					<xs:element name="roepnaam" type="EDEXString64Type" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element name="roepnaam" type="EDEXString64Type"/>
+			</xs:choice>
+			<xs:element name="geboortedatum" type="xs:date" minOccurs="0"/>
+			<xs:element name="geslacht" type="EDEXGeslachtType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="groep" type="GroepsReferentieType" minOccurs="0"/>
+				<xs:element name="jaargroep" type="EDEXJaargroepType" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="etniciteit" type="EDEXEtniciteitType" minOccurs="0"/>
+			<xs:element name="land" type="EDEXLandType" minOccurs="0"/>
+			<xs:element name="land_vader" type="EDEXLandType" minOccurs="0"/>
+			<xs:element name="land_moeder" type="EDEXLandType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="sofinummer" type="EDEXSofinummerType" minOccurs="0"/>
+				<xs:element name="onderwijsnummer" type="EDEXOnderwijsnummerType" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="gewicht_nieuw" type="EDEXLrlGewichtNieuwType" minOccurs="0"/>
+			<xs:element name="gewicht" type="EDEXLrlGewichtType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="postcodenl" type="EDEXPostcodeNlType" minOccurs="0"/>
+				<xs:element name="postcodeoverig" type="EDEXString32Type" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="instroomdatum" type="xs:date" minOccurs="0"/>
+			<xs:element name="uitstroomdatum" type="xs:date" minOccurs="0"/>
+			<xs:element name="toevoegingen" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="blok" type="ToevoegingsBlokType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mutatiedatum" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="EDEXKeyType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="LeerkrachtType" final="extension">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="achternaam" type="EDEXAchternaamType"/>
+					<xs:element name="voorvoegsel" type="EDEXVoorvoegselType" minOccurs="0"/>
+					<xs:element name="voorletters-1" type="EDEXVoorletters-1Type" minOccurs="0"/>
+					<xs:element name="roepnaam" type="EDEXString64Type" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element name="roepnaam" type="EDEXString64Type"/>
+			</xs:choice>
+			<xs:element name="groepen" type="GroepenReferentieType" minOccurs="0"/>
+			<xs:element name="mutatiedatum" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="EDEXKeyType" use="required"/>
+	</xs:complexType>
+</xs:schema>

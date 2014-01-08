@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			<versie>1.03</versie>
+			<auteur>Geert Evers en Gerrit Jansen</auteur>
+			<omschrijving>Dit document definieert de structuur voor het opslaan van EDEX data in de EDEX Mark-up Language EDEXML</omschrijving>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="EDEXML.elementen.xsd"/>
+	<xs:element name="EDEX" type="EDEXType">
+		<xs:key name="groepsKey">
+			<xs:selector xpath="./groepen/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:key name="leerlingKey">
+			<xs:selector xpath="leerlingen/leerling"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:keyref name="groepsRefLeerling" refer="groepsKey">
+			<xs:selector xpath="leerlingen/leerling/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+		<xs:key name="leerkrachtKey">
+			<xs:selector xpath="leerkrachten/leerkracht"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:keyref name="groepsRefLeerkracht" refer="groepsKey">
+			<xs:selector xpath="leerkrachten/leerkracht/groepen/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="EDEXType">
+		<xs:sequence>
+			<xs:element name="school" type="SchoolType"/>
+			<xs:element name="groepen" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="groep" type="GroepType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leerlingen">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="leerling" type="LeerlingType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leerkrachten" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="leerkracht" type="LeerkrachtType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Dit is een basis invulling voor het ExtraGegevensType wat de opslag van opmerkingen bewerkt -->
+	<xs:complexType name="OpmerkingGegevensType" final="extension">
+		<xs:complexContent>
+			<xs:extension base="ToevoegingsBlokType">
+				<xs:sequence>
+					<xs:element name="opmerking" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
