@@ -7,34 +7,66 @@ class TestEdexml extends Edexml {
 		$this->_schoolClasses = $schoolClasses;
 	}
 
+/**
+ * Test double of `parent::_convertKey`.
+ *
+ */
 	public function convertKey($key) {
 		return $this->_convertKey($key);
 	}
 
+/**
+ * Test double of `parent::_convertNames`.
+ *
+ */
 	public function convertNames($user) {
 		return $this->_convertNames($user);
 	}
 
+/**
+ * Test double of `parent::_convertSchool`.
+ *
+ */
 	public function convertSchool($school) {
 		return $this->_convertSchool($school);
 	}
 
+/**
+ * Test double of `parent::_convertSchoolClass`.
+ *
+ */
 	public function convertSchoolClass($schoolClass) {
 		return $this->_convertSchoolClass($schoolClass);
 	}
 
+/**
+ * Test double of `parent::_convertSchoolClasses`.
+ *
+ */
 	public function convertSchoolClasses($schoolClasses) {
 		return $this->_convertSchoolClasses($schoolClasses);
 	}
 
+/**
+ * Test double of `parent::_convertStudent`.
+ *
+ */
 	public function convertStudent($data) {
 		return $this->_convertStudent($data);
 	}
 
+/**
+ * Test double of `parent::_convertTeacher`.
+ *
+ */
 	public function convertTeacher($data) {
 		return $this->_convertTeacher($data);
 	}
 
+/**
+ * Test double of `parent::_parse`.
+ *
+ */
 	public function parse($filename) {
 		return $this->_parse($filename);
 	}
@@ -284,7 +316,7 @@ class EdexmlTest extends CakeTestCase {
 		$this->assertEqual($result['last_name'], 'Voorvoegsel Achternaam');
 		$this->assertEqual($result['first_name'], 'Roepnaam');
 
-		// check dummy key for example #001
+		// Check dummy key for example #001
 		// TODO: what to do when there are no identifiers?
 		$data = array(
 			'@key' => '#001',
