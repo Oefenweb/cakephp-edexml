@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cakephp-edexml\n"
-"POT-Creation-Date: 2014-04-08 16:05+0200\n"
-"PO-Revision-Date: 2014-04-08 16:10+0100\n"
+"POT-Creation-Date: 2014-04-08 17:08+0200\n"
+"PO-Revision-Date: 2014-04-08 17:09+0100\n"
 "Last-Translator: Mischa ter Smitten <m.tersmitten@oefenweb.nl>\n"
 "Language-Team: Oefenweb.nl\n"
 "Language: \n"
@@ -19,26 +19,34 @@ msgstr ""
 
 #: Model/Edexml.php:validation
 #: for field file
-msgid "Something went wrong with the upload."
+msgid "File upload failed"
 msgstr "Something went wrong with the upload."
 
 #: Model/Edexml.php:validation
 #: for field file
-msgid "Please supply a valid Edexml file"
-msgstr "Please supply a valid Edexml file"
+msgid "Must be a xml file"
+msgstr "Must be a xml file"
 
 #: Model/Edexml.php:validation
 #: for field file
-msgid "File must be less than 1MB"
-msgstr "File must be less than 1MB"
+msgid "Must be smaller than 1MB"
+msgstr "Must be smaller than 1MB"
 
 #: Model/Edexml.php:validation
 #: for field file
-msgid "Invalid mime type."
-msgstr "Invalid mime type."
+msgid "Must be of type `xml`"
+msgstr "Must be of type `xml`"
 
 #: Model/Edexml.php:validation
 #: for field file
-msgid "Invalid Edexml file"
-msgstr "Invalid Edexml file"
+msgid "Must be a valid Edexml file"
+msgstr "Must be a valid Edexml file"
 
+#~ msgid "Something went wrong with the upload."
+#~ msgstr "Something went wrong with the upload."
+
+#~ msgid "Please supply a valid Edexml file"
+#~ msgstr "Please supply a valid Edexml file"
+
+#~ msgid "Invalid mime type."
+#~ msgstr "Invalid mime type."

@@ -37,26 +37,26 @@ class Edexml extends AppModel {
 		'file' => array(
 			'uploadError' => array(
 				'rule' => 'uploadError',
-				'message' => 'Something went wrong with the upload.',
+				'message' => 'File upload failed',
 				'last' => true
 			),
 			'extension' => array(
 				'rule' => array('extension', array('xml')),
-				'message' => 'Please supply a valid Edexml file',
+				'message' => 'Must be a xml file',
 				'last' => true
 			),
 			'fileSize' => array(
 				'rule' => array('fileSize', '<=', '1MB'),
-				'message' => 'File must be less than 1MB',
+				'message' => 'Must be smaller than 1MB',
 				'last' => true
 			),
 			'mimeType' => array(
 				'rule' => array('mimeType', array('application/xml')),
-				'message' => 'Invalid mime type.'
+				'message' => 'Must be of type `xml`'
 			),
 			'edexml' => array(
 				'rule' => 'validateEdexml',
-				'message' => 'Invalid Edexml file'
+				'message' => 'Must be a valid Edexml file'
 			)
 		)
 	);
