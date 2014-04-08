@@ -1,0 +1,44 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cakephp-edexml\n"
+"POT-Creation-Date: 2014-04-08 16:05+0200\n"
+"PO-Revision-Date: 2014-04-08 16:10+0100\n"
+"Last-Translator: Mischa ter Smitten <m.tersmitten@oefenweb.nl>\n"
+"Language-Team: Oefenweb.nl\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+
+#: Model/Edexml.php:validation
+#: for field file
+msgid "Something went wrong with the upload."
+msgstr "Something went wrong with the upload."
+
+#: Model/Edexml.php:validation
+#: for field file
+msgid "Please supply a valid Edexml file"
+msgstr "Please supply a valid Edexml file"
+
+#: Model/Edexml.php:validation
+#: for field file
+msgid "File must be less than 1MB"
+msgstr "File must be less than 1MB"
+
+#: Model/Edexml.php:validation
+#: for field file
+msgid "Invalid mime type."
+msgstr "Invalid mime type."
+
+#: Model/Edexml.php:validation
+#: for field file
+msgid "Invalid Edexml file"
+msgstr "Invalid Edexml file"
+

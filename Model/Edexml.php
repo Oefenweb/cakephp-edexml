@@ -22,6 +22,13 @@ class Edexml extends AppModel {
 	public $useTable = false;
 
 /**
+ * The (translation) domain to be used for extracted validation messages in models.
+ *
+ * @var string
+ */
+	public $validationDomain = 'edexml';
+
+/**
  * Validation rules
  *
  * @var array
