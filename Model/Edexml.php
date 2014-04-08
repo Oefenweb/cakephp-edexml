@@ -90,9 +90,7 @@ class Edexml extends AppModel {
  * @return boolean Whether or not the Edexml file is valid
  */
 	public function validateEdexml($check) {
-		$valid = false;
-		$value = array_values($check);
-		$value = $value[0];
+		$value = array_shift($check);
 
 		return (boolean)$this->_parse($value['tmp_name']);
 	}
@@ -110,8 +108,10 @@ class Edexml extends AppModel {
 			libxml_use_internal_errors(true);
 			libxml_clear_errors();
 
-			if ($dom = Xml::build($filename, array('return' => 'domdocument'))) {
-				if (!$dom->schemaValidate(App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd')) {
+			$dom = Xml::build($filename, array('return' => 'domdocument'));
+			if ($dom) {
+				$schemaFile = App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd';
+				if (!$dom->schemaValidate($schemaFile)) {
 					$dom = false;
 					foreach (libxml_get_errors() as $error) {
 						CakeLog::error($this->_displayXmlError($error), 'debug');
