@@ -90,9 +90,7 @@ class Edexml extends AppModel {
  * @return boolean Whether or not the Edexml file is valid
  */
 	public function validateEdexml($check) {
-		$valid = false;
-		$value = array_values($check);
-		$value = $value[0];
+		$value = array_shift($check);
 
 		return (boolean)$this->_parse($value['tmp_name']);
 	}
@@ -110,8 +108,10 @@ class Edexml extends AppModel {
 			libxml_use_internal_errors(true);
 			libxml_clear_errors();
 
-			if ($dom = Xml::build($filename, array('return' => 'domdocument'))) {
-				if (!$dom->schemaValidate(App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd')) {
+			$dom = Xml::build($filename, array('return' => 'domdocument'));
+			if ($dom) {
+				$schemaFile = App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd';
+				if (!$dom->schemaValidate($schemaFile)) {
 					$dom = false;
 					foreach (libxml_get_errors() as $error) {
 						CakeLog::error($this->_displayXmlError($error), 'debug');
@@ -353,28 +353,33 @@ class Edexml extends AppModel {
 		$result['school'] = $this->_convertSchool($data['EDEX']['school']);
 
 		if (!empty($data['EDEX']['groepen']['groep'])) {
-			if (is_array($data['EDEX']['groepen']['groep'])) {
-				$this->_schoolClasses = $this->_convertSchoolClasses($data['EDEX']['groepen']['groep']);
+			if (!Hash::numeric(array_keys($data['EDEX']['groepen']['groep']))) {
+				$data['EDEX']['groepen']['groep'] = array($data['EDEX']['groepen']['groep']);
+			}
 
-				foreach ($this->_schoolClasses as $schoolClass) {
-					$result['SchoolClass'][] = $schoolClass;
-				}
+			$this->_schoolClasses = $this->_convertSchoolClasses($data['EDEX']['groepen']['groep']);
+
+			foreach ($this->_schoolClasses as $schoolClass) {
+				$result['SchoolClass'][] = $schoolClass;
 			}
 		}
 
 		if (!empty($data['EDEX']['leerlingen']['leerling'])) {
-			if (is_array($data['EDEX']['leerlingen']['leerling'])) {
-				foreach ($data['EDEX']['leerlingen']['leerling'] as $i => $student) {
-					$result['Student'][$i] = $this->_convertStudent($student);
-				}
+			if (!Hash::numeric(array_keys($data['EDEX']['leerlingen']['leerling']))) {
+				$data['EDEX']['leerlingen']['leerling'] = array($data['EDEX']['leerlingen']['leerling']);
+			}
+			foreach ($data['EDEX']['leerlingen']['leerling'] as $i => $student) {
+				$result['Student'][$i] = $this->_convertStudent($student);
 			}
 		}
 
 		if (!empty($data['EDEX']['leerkrachten']['leerkracht'])) {
-			if (is_array($data['EDEX']['leerkrachten']['leerkracht'])) {
-				foreach ($data['EDEX']['leerkrachten']['leerkracht'] as $i => $teacher) {
-					$result['Teacher'][$i] = $this->_convertTeacher($teacher);
-				}
+			if (!Hash::numeric(array_keys($data['EDEX']['leerkrachten']['leerkracht']))) {
+				$data['EDEX']['leerkrachten']['leerkracht'] = array($data['EDEX']['leerkrachten']['leerkracht']);
+			}
+
+			foreach ($data['EDEX']['leerkrachten']['leerkracht'] as $i => $teacher) {
+				$result['Teacher'][$i] = $this->_convertTeacher($teacher);
 			}
 		}
 
