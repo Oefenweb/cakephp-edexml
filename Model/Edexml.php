@@ -303,7 +303,7 @@ class Edexml extends AppModel {
 		}
 
 		if (!empty($student['groep']['@key'])) {
-			$result['SchoolClass'][] = $this->_schoolClasses[$student['groep']['@key']];
+			$result['SchoolClass'][$student['groep']['@key']] = $this->_schoolClasses[$student['groep']['@key']];
 			$result['grade'] = $this->_schoolClasses[$student['groep']['@key']]['grade'];
 		}
 
@@ -341,7 +341,7 @@ class Edexml extends AppModel {
 			}
 
 			foreach ($teacher['groepen']['groep'] as $groep) {
-				$result['SchoolClass'][] = $this->_schoolClasses[$groep['@key']];
+				$result['SchoolClass'][$groep['@key']] = $this->_schoolClasses[$groep['@key']];
 			}
 		}
 
@@ -365,10 +365,7 @@ class Edexml extends AppModel {
 			}
 
 			$this->_schoolClasses = $this->_convertSchoolClasses($data['EDEX']['groepen']['groep']);
-
-			foreach ($this->_schoolClasses as $schoolClass) {
-				$result['SchoolClass'][] = $schoolClass;
-			}
+			$result['SchoolClass'] = $this->_schoolClasses;
 		}
 
 		if (!empty($data['EDEX']['leerlingen']['leerling'])) {
