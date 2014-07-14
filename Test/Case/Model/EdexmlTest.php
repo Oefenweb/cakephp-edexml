@@ -260,7 +260,7 @@ class EdexmlTest extends CakeTestCase {
 			'gender' => null,
 			'grade' => 10,
 			'SchoolClass' => array(
-				0 => array(
+				'key' => array(
 					'grade' => 10
 				)
 			)
