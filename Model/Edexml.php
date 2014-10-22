@@ -94,12 +94,12 @@ class Edexml extends AppModel {
  * An Edexml file validation function to be used in Models.
  *
  * @param array $check Model data for a file upload ('field' => 'value')
- * @return boolean Whether or not the Edexml file is valid
+ * @return bool Whether or not the Edexml file is valid
  */
 	public function validateEdexml($check) {
 		$value = array_shift($check);
 
-		return (boolean)$this->_parse($value['tmp_name']);
+		return (bool)$this->_parse($value['tmp_name']);
 	}
 
 /**
