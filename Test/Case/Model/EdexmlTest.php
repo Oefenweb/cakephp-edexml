@@ -360,10 +360,10 @@ class EdexmlTest extends CakeTestCase {
 		$this->assertFalse($this->Edexml->parseToArray(App::pluginPath('Edexml') . 'Test' . DS . 'File' . DS . 'sample-invalid.xml'));
 
 		$data = $this->Edexml->parseToArray(App::pluginPath('Edexml') . 'Test' . DS . 'File' . DS . 'sample.xml');
-		$this->assertTrue((boolean)$data);
+		$this->assertTrue((bool)$data);
 
 		$result = $this->Edexml->convert($data);
-		$this->assertTrue((boolean)$result);
+		$this->assertTrue((bool)$result);
 
 		$this->assertEqual(count($result['Student']), count($data['EDEX']['leerlingen']['leerling']));
 		$this->assertEqual(count($result['SchoolClass']), count($data['EDEX']['groepen']['groep']));
