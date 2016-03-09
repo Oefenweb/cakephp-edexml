@@ -33,40 +33,40 @@ class Edexml extends AppModel {
  *
  * @var array
  */
-	public $validate = array(
-		'file' => array(
-			'uploadError' => array(
+	public $validate = [
+		'file' => [
+			'uploadError' => [
 				'rule' => 'uploadError',
 				'message' => 'File upload failed',
 				'last' => true
-			),
-			'extension' => array(
-				'rule' => array('extension', array('xml')),
+			],
+			'extension' => [
+				'rule' => ['extension', ['xml']],
 				'message' => 'Must be a xml file',
 				'last' => true
-			),
-			'fileSize' => array(
-				'rule' => array('fileSize', '<=', '1MB'),
+			],
+			'fileSize' => [
+				'rule' => ['fileSize', '<=', '1MB'],
 				'message' => 'Must be smaller than 1MB',
 				'last' => true
-			),
-			'mimeType' => array(
-				'rule' => array('mimeType', array('application/xml')),
+			],
+			'mimeType' => [
+				'rule' => ['mimeType', ['application/xml']],
 				'message' => 'Must be of type `xml`'
-			),
-			'edexml' => array(
+			],
+			'edexml' => [
 				'rule' => 'validateEdexml',
 				'message' => 'Must be a valid Edexml file'
-			)
-		)
-	);
+			]
+		]
+	];
 
 /**
  * Year group to grade mapping
  *
  * @var array
  */
-	protected $_yearGroupToGradeMapping = array(
+	protected $_yearGroupToGradeMapping = [
 		0 => 1,				// Peutergroep / Kleutergroep 1
 		1 => 1,				// Groep 1 / Kleutergroep 2
 		2 => 2,				// Groep 2 / Kleutergroep 3
@@ -81,14 +81,14 @@ class Edexml extends AppModel {
 		13 => 11,			// VO leerjaar 3
 		'S' => null,	// SO / SBO / BO
 		'H' => null		// Historisch
-	);
+	];
 
 /**
  * School Classes
  *
  * @var array
  */
-	protected $_schoolClasses = array();
+	protected $_schoolClasses = [];
 
 /**
  * An Edexml file validation function to be used in Models.
@@ -115,7 +115,7 @@ class Edexml extends AppModel {
 			libxml_use_internal_errors(true);
 			libxml_clear_errors();
 
-			$dom = Xml::build($filename, array('return' => 'domdocument'));
+			$dom = Xml::build($filename, ['return' => 'domdocument']);
 			if ($dom) {
 				$schemaFile = App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd';
 				if (!$dom->schemaValidate($schemaFile)) {
@@ -198,10 +198,10 @@ class Edexml extends AppModel {
  * @return array Normalized data (first name and last name)
  */
 	protected function _convertNames($user) {
-		$result = array(
+		$result = [
 			'first_name' => '',
 			'last_name' => ''
-		);
+		];
 		if (!empty($user['voorvoegsel'])) {
 			$result['last_name'] .= $user['voorvoegsel'] . ' ';
 		}
@@ -220,9 +220,9 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	protected function _convertSchool($school) {
-		$result = array(
+		$result = [
 			'key' => null
-		);
+		];
 		if (!empty($school['schoolkey'])) {
 			$result['key'] = $this->_convertKey($school['schoolkey']);
 		}
@@ -237,10 +237,10 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	protected function _convertSchoolClass($schoolClass) {
-		$result = array(
+		$result = [
 			'key' => null,
 			'grade' => null
-		);
+		];
 		if (!empty($schoolClass['@key'])) {
 			$result['key'] = $this->_convertKey($schoolClass['@key']);
 		}
@@ -257,7 +257,7 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	protected function _convertSchoolClasses($schoolClasses) {
-		$result = array();
+		$result = [];
 		if (!empty($schoolClasses)) {
 			foreach ($schoolClasses as $schoolClass) {
 				$result[$schoolClass['@key']] = $this->_convertSchoolClass($schoolClass);
@@ -274,13 +274,13 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	protected function _convertStudent($student) {
-		$result = array(
+		$result = [
 			'key' => null,
 			'date_of_birth' => null,
 			'gender' => null,
 			'grade' => null,
-			'SchoolClass' => array()
-		);
+			'SchoolClass' => []
+		];
 		if (!empty($student['@key'])) {
 			$result['key'] = $this->_convertKey($student['@key']);
 		}
@@ -321,13 +321,13 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	protected function _convertTeacher($teacher) {
-		$result = array(
+		$result = [
 			'key' => null,
 			'date_of_birth' => null,
 			'gender' => null,
 			'grade' => null,
-			'SchoolClass' => array()
-		);
+			'SchoolClass' => []
+		];
 
 		if (!empty($teacher['@key'])) {
 			$result['key'] = $this->_convertKey($teacher['@key']);
@@ -337,7 +337,7 @@ class Edexml extends AppModel {
 
 		if (!empty($teacher['groepen']['groep'])) {
 			if (!Hash::numeric(array_keys($teacher['groepen']['groep']))) {
-				$teacher['groepen']['groep'] = array($teacher['groepen']['groep']);
+				$teacher['groepen']['groep'] = [$teacher['groepen']['groep']];
 			}
 
 			foreach ($teacher['groepen']['groep'] as $groep) {
@@ -355,13 +355,13 @@ class Edexml extends AppModel {
  * @return array Normalized data
  */
 	public function convert($data) {
-		$result = array();
+		$result = [];
 
 		$result['school'] = $this->_convertSchool($data['EDEX']['school']);
 
 		if (!empty($data['EDEX']['groepen']['groep'])) {
 			if (!Hash::numeric(array_keys($data['EDEX']['groepen']['groep']))) {
-				$data['EDEX']['groepen']['groep'] = array($data['EDEX']['groepen']['groep']);
+				$data['EDEX']['groepen']['groep'] = [$data['EDEX']['groepen']['groep']];
 			}
 
 			$this->_schoolClasses = $this->_convertSchoolClasses($data['EDEX']['groepen']['groep']);
@@ -370,7 +370,7 @@ class Edexml extends AppModel {
 
 		if (!empty($data['EDEX']['leerlingen']['leerling'])) {
 			if (!Hash::numeric(array_keys($data['EDEX']['leerlingen']['leerling']))) {
-				$data['EDEX']['leerlingen']['leerling'] = array($data['EDEX']['leerlingen']['leerling']);
+				$data['EDEX']['leerlingen']['leerling'] = [$data['EDEX']['leerlingen']['leerling']];
 			}
 			foreach ($data['EDEX']['leerlingen']['leerling'] as $i => $student) {
 				$result['Student'][$i] = $this->_convertStudent($student);
@@ -379,7 +379,7 @@ class Edexml extends AppModel {
 
 		if (!empty($data['EDEX']['leerkrachten']['leerkracht'])) {
 			if (!Hash::numeric(array_keys($data['EDEX']['leerkrachten']['leerkracht']))) {
-				$data['EDEX']['leerkrachten']['leerkracht'] = array($data['EDEX']['leerkrachten']['leerkracht']);
+				$data['EDEX']['leerkrachten']['leerkracht'] = [$data['EDEX']['leerkrachten']['leerkracht']];
 			}
 
 			foreach ($data['EDEX']['leerkrachten']['leerkracht'] as $i => $teacher) {
