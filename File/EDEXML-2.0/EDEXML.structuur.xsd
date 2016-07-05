@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			<versie>2.0 CONCEPT</versie>
+			<auteur>Geert Evers, Gerrit Jansen en Jurgen Kevelaers. Input van Marc Fleischeuers en Erik Siegel.</auteur>
+			<omschrijving>Dit document definieert de structuur voor het opslaan van EDEX data in de EDEX Mark-up Language EDEXML</omschrijving>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="EDEXML.elementen.xsd"/>
+	<xs:element name="EDEX" type="EDEXType">
+		<xs:unique name="groepKeyUnique">
+			<xs:selector xpath="groepen/*"/>
+			<xs:field xpath="@key"/>
+		</xs:unique>
+		<xs:key name="groepsKey">
+			<xs:selector xpath="groepen/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:key name="samengesteldegroepsKey">
+			<xs:selector xpath="groepen/samengestelde_groep"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:key name="leerlingKey">
+			<xs:selector xpath="leerlingen/leerling"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:keyref name="groepsRefLeerling" refer="groepsKey">
+			<xs:selector xpath="leerlingen/leerling/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+		<xs:keyref name="samengesteldegroepsRefLeerling" refer="samengesteldegroepsKey">
+			<xs:selector xpath="leerlingen/leerling/samengestelde_groepen/samengestelde_groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+		<xs:key name="leerkrachtKey">
+			<xs:selector xpath="leerkrachten/leerkracht"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:keyref name="groepsRefLeerkracht" refer="groepsKey">
+			<xs:selector xpath="leerkrachten/leerkracht/groepen/groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+		<xs:keyref name="samengesteldegroepsRefLeerkracht" refer="samengesteldegroepsKey">
+			<xs:selector xpath="leerkrachten/leerkracht/groepen/samengestelde_groep"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+		<xs:key name="vestigingsKey">
+			<xs:selector xpath="vestigingen/vestiging"/>
+			<xs:field xpath="@key"/>
+		</xs:key>
+		<xs:keyref name="vestigingsRefLeerling" refer="vestigingsKey">
+			<xs:selector xpath="leerlingen/leerling/vestiging"/>
+			<xs:field xpath="@key"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="EDEXType">
+		<xs:sequence>
+			<xs:element name="school" type="SchoolType"/>
+			<xs:element name="vestigingen" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vestiging" type="VestigingType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="groepen" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:choice>
+							<xs:element name="groep" type="GroepType"/>
+							<xs:element name="samengestelde_groep" type="SamengesteldeGroepType"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leerlingen">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="leerling" type="LeerlingType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leerkrachten" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="leerkracht" type="LeerkrachtType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Dit is een basis invulling voor het ExtraGegevensType wat de opslag van opmerkingen bewerkt -->
+	<xs:complexType name="OpmerkingGegevensType">
+		<xs:complexContent>
+			<xs:extension base="ToevoegingsBlokType">
+				<xs:sequence>
+					<xs:element name="opmerking" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
