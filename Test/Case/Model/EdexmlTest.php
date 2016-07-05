@@ -365,7 +365,7 @@ class EdexmlTest extends CakeTestCase {
 		$result = $this->Edexml->convert($data);
 		$this->assertTrue((bool)$result);
 
-		$this->assertEquals(count(count($data['EDEX']['leerlingen']['leerling']), $result['Student']));
+		$this->assertEquals(count($data['EDEX']['leerlingen']['leerling']), count($result['Student']));
 		$this->assertEquals(count($data['EDEX']['groepen']['groep']), count($result['SchoolClass']));
 		$this->assertEquals(count($data['EDEX']['leerkrachten']['leerkracht']), count($result['Teacher']));
 	}
