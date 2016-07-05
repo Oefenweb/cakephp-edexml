@@ -357,9 +357,9 @@ class EdexmlTest extends CakeTestCase {
  * @return void
  */
 	public function testParseToArray() {
-		$this->assertFalse($this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'sample-invalid.xml'));
+		$this->assertFalse($this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample-invalid.xml'));
 
-		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'sample.xml');
+		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample.xml');
 		$this->assertTrue((bool)$data);
 
 		$result = $this->Edexml->convert($data);

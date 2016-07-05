@@ -117,7 +117,7 @@ class Edexml extends AppModel {
 
 			$dom = Xml::build($filename, ['return' => 'domdocument']);
 			if ($dom) {
-				$schemaFile = CakePlugin::path('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd';
+				$schemaFile = CakePlugin::path('Edexml') . 'File' . DS . 'EDEXML-1.0.3' . DS . 'EDEXML.structuur.xsd';
 				if (!$dom->schemaValidate($schemaFile)) {
 					$dom = false;
 					foreach (libxml_get_errors() as $error) {
