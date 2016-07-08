@@ -371,6 +371,32 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
+ * testParseToArrayEdexml20SampleFile method
+ *
+ * @return void
+ */
+	public function testParseToArrayEdexml20SampleFile() {
+		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0.xml');
+		$this->assertTrue((bool)$data);
+
+		$result = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$result);
+	}
+
+/**
+ * testParseToArrayEdexml20VlaSampleFile method
+ *
+ * @return void
+ */
+	public function testParseToArrayEdexml20VlaSampleFile() {
+		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0-Vla.xml');
+		$this->assertTrue((bool)$data);
+
+		$result = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$result);
+	}
+
+/**
  * testConvertSingleItemData method
  *
  * @return void
