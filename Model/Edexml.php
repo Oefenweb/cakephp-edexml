@@ -67,6 +67,8 @@ class Edexml extends AppModel {
  * @var array
  */
 	protected $_yearGroupToGradeMapping = [
+		'B' => 1,			// Baby's leeftijd 0 tot 12 maanden
+		'D' => 1,			// Dreumesen leeftijd 1 tot 2 jaar
 		0 => 1,				// Peutergroep / Kleutergroep 1
 		1 => 1,				// Groep 1 / Kleutergroep 2
 		2 => 2,				// Groep 2 / Kleutergroep 3
@@ -76,10 +78,16 @@ class Edexml extends AppModel {
 		6 => 6,				// Groep 6 / Klas 4
 		7 => 7,				// Groep 7 / Klas 5
 		8 => 8,				// Groep 8 / Klas 6
-		11 => 9,			// VO leerjaar 1
-		12 => 10,			// VO leerjaar 2
-		13 => 11,			// VO leerjaar 3
-		'S' => null,	// SO / SBO / BO
+		11 => 9,			// Voortgezet onderwijs leerjaar 1 / Secundair onderwijs leerjaar 1 (Vlaanderen)
+		12 => 10,			// Voortgezet onderwijs leerjaar 2 / Secundair onderwijs leerjaar 2 (Vlaanderen)
+		13 => 11,			// Voortgezet onderwijs leerjaar 3 / Secundair onderwijs leerjaar 3 (Vlaanderen)
+		14 => 12,			// Voortgezet onderwijs leerjaar 4 / Secundair onderwijs leerjaar 4 (Vlaanderen)
+		15 => 13,			// Voortgezet onderwijs leerjaar 5 / Secundair onderwijs leerjaar 5 (Vlaanderen)
+		16 => 14,			// Voortgezet onderwijs leerjaar 6 / Secundair onderwijs leerjaar 6 (Vlaanderen)
+		'S' => null,	// S(B)O (speciaal (basis)onderwijs / BuO (buitengewoon kleuter/lager onderwijs, Vlaanderen)
+		'V' => null,	// VSO (voortgezet speciaal onderwijs) / BuSO (buitengewoon secundair onderwijs, Vlaanderen)
+		'C' => null,	// Combinatiegroep (jaargroep per leerling vastgelegd)
+		'N' => 19,		// Niet PO / VO
 		'H' => null		// Historisch
 	];
 
@@ -117,7 +125,7 @@ class Edexml extends AppModel {
 
 			$dom = Xml::build($filename, ['return' => 'domdocument']);
 			if ($dom) {
-				$schemaFile = App::pluginPath('Edexml') . 'File' . DS . 'EDEXML.structuur.xsd';
+				$schemaFile = CakePlugin::path('Edexml') . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.structuur.xsd';
 				if (!$dom->schemaValidate($schemaFile)) {
 					$dom = false;
 					foreach (libxml_get_errors() as $error) {
@@ -205,7 +213,9 @@ class Edexml extends AppModel {
 		if (!empty($user['voorvoegsel'])) {
 			$result['last_name'] .= $user['voorvoegsel'] . ' ';
 		}
-		$result['last_name'] .= $user['achternaam'];
+		if (!empty($user['achternaam'])) {
+			$result['last_name'] .= $user['achternaam'];
+		}
 		if (!empty($user['roepnaam'])) {
 			$result['first_name'] = $user['roepnaam'];
 		}
