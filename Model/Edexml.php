@@ -213,7 +213,9 @@ class Edexml extends AppModel {
 		if (!empty($user['voorvoegsel'])) {
 			$result['last_name'] .= $user['voorvoegsel'] . ' ';
 		}
-		$result['last_name'] .= $user['achternaam'];
+		if (!empty($user['achternaam'])) {
+			$result['last_name'] .= $user['achternaam'];
+		}
 		if (!empty($user['roepnaam'])) {
 			$result['first_name'] = $user['roepnaam'];
 		}
