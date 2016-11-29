@@ -84,7 +84,7 @@ class Edexml extends AppModel {
 		14 => 12,			// Voortgezet onderwijs leerjaar 4 / Secundair onderwijs leerjaar 4 (Vlaanderen)
 		15 => 13,			// Voortgezet onderwijs leerjaar 5 / Secundair onderwijs leerjaar 5 (Vlaanderen)
 		16 => 14,			// Voortgezet onderwijs leerjaar 6 / Secundair onderwijs leerjaar 6 (Vlaanderen)
-		'S' => null,	// S(B)O (speciaal (basis)onderwijs / BuO (buitengewoon kleuter/lager onderwijs, Vlaanderen)
+		'S' => 19,		// S(B)O (speciaal (basis)onderwijs / BuO (buitengewoon kleuter/lager onderwijs, Vlaanderen)
 		'V' => null,	// VSO (voortgezet speciaal onderwijs) / BuSO (buitengewoon secundair onderwijs, Vlaanderen)
 		'C' => null,	// Combinatiegroep (jaargroep per leerling vastgelegd)
 		'N' => 19,		// Niet PO / VO

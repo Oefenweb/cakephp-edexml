@@ -109,7 +109,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertKey method
+ * Tests `convertKey`.
  *
  * @return void
  */
@@ -120,7 +120,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertNames method
+ * Tests `convertNames`.
  *
  * @return void
  */
@@ -148,7 +148,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertSchool method
+ * Tests `convertSchool`.
  *
  * @return void
  */
@@ -177,7 +177,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertSchoolClass method
+ * Tests `convertSchoolClass`.
  *
  * @return void
  */
@@ -196,7 +196,28 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertSchoolClasses method
+ * Tests `convertSchoolClass`.
+ *
+ *  Yeargroup S.
+ *
+ * @return void
+ */
+	public function testConvertSchoolClassYeargroupS() {
+		$data = [
+			'@key' => 'key',
+			'naam' => 'naam',
+			'jaargroep' => 'S'
+		];
+		$expected = [
+			'key' => $data['@key'],
+			'name' => 'naam',
+			'grade' => '19'
+		];
+		$this->assertEquals($expected, $this->Edexml->convertSchoolClass($data));
+	}
+
+/**
+ * Tests `convertSchoolClasses`.
  *
  * @return void
  */
@@ -219,7 +240,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertStudent method
+ * Tests `convertStudent`.
  *
  * @return void
  */
@@ -329,7 +350,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertTeacher method
+ * Tests `convertTeacher`.
  *
  * @return void
  */
@@ -352,7 +373,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testParseToArray method
+ * Tests `parseToArray`.
  *
  * @return void
  */
@@ -371,7 +392,9 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testParseToArrayEdexml20SampleFile method
+ * Tests `parseToArray`.
+ *
+ *  Edex 2.0.
  *
  * @return void
  */
@@ -384,7 +407,9 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testParseToArrayEdexml20VlaSampleFile method
+ * Tests `parseToArray`.
+ *
+ *  Edex 2.0.
  *
  * @return void
  */
@@ -397,7 +422,7 @@ class EdexmlTest extends CakeTestCase {
 	}
 
 /**
- * testConvertSingleItemData method
+ * Tests `convert`.
  *
  * @return void
  */
