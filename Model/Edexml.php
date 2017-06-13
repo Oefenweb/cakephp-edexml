@@ -336,6 +336,7 @@ class Edexml extends AppModel {
 			'date_of_birth' => null,
 			'gender' => null,
 			'grade' => null,
+			'email_address' => null,
 			'SchoolClass' => []
 		];
 
@@ -344,6 +345,10 @@ class Edexml extends AppModel {
 		}
 
 		$result = array_merge($result, $this->_convertNames($teacher));
+
+		if (!empty($teacher['emailadres'])) {
+			$result['email_address'] = $teacher['emailadres'];
+		}
 
 		if (!empty($teacher['groepen']['groep'])) {
 			if (!Hash::numeric(array_keys($teacher['groepen']['groep']))) {
