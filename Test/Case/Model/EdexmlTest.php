@@ -367,6 +367,25 @@ class EdexmlTest extends CakeTestCase {
 			'date_of_birth' => null,
 			'gender' => null,
 			'grade' => null,
+			'email_address' => null,
+			'SchoolClass' => []
+		];
+		$this->assertEquals($expected, $this->Edexml->convertTeacher($data));
+
+		$data = [
+			'@key' => 'key',
+			'achternaam' => 'Achternaam',
+			'roepnaam' => 'Roepnaam',
+			'emailadres' => 'roepnaam@achternaam.com',
+		];
+		$expected = [
+			'key' => 'key',
+			'last_name' => 'Achternaam',
+			'first_name' => 'Roepnaam',
+			'date_of_birth' => null,
+			'gender' => null,
+			'grade' => null,
+			'email_address' => 'roepnaam@achternaam.com',
 			'SchoolClass' => []
 		];
 		$this->assertEquals($expected, $this->Edexml->convertTeacher($data));
