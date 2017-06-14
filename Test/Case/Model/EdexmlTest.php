@@ -337,6 +337,29 @@ class EdexmlTest extends CakeTestCase {
 		$this->assertEquals('Voorvoegsel Achternaam', $result['last_name']);
 		$this->assertEquals('Roepnaam', $result['first_name']);
 
+		$data = [
+			'achternaam' => 'Achternaam',
+			'voorletters-1' => 'KLM',
+		];
+		$result = $this->Edexml->convertStudent($data);
+		$this->assertEquals('KLM', $result['first_name']);
+
+		$data = [
+			'achternaam' => 'Achternaam',
+			'voornamen' => 'Voornaam1 Voornaam2',
+		];
+		$result = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Voornaam1 Voornaam2', $result['first_name']);
+
+		$data = [
+			'achternaam' => 'Achternaam',
+			'roepnaam' => 'Roepnaam',
+			'voornamen' => 'Voornaam1 Voornaam2',
+			'voorletters-1' => 'KLM',
+		];
+		$result = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Roepnaam', $result['first_name']);
+
 		// Check dummy key for example #001
 		// TODO: what to do when there are no identifiers?
 		$data = [
@@ -382,6 +405,42 @@ class EdexmlTest extends CakeTestCase {
 			'key' => 'key',
 			'last_name' => 'Achternaam',
 			'first_name' => 'Roepnaam',
+			'date_of_birth' => null,
+			'gender' => null,
+			'grade' => null,
+			'email_address' => 'roepnaam@achternaam.com',
+			'SchoolClass' => []
+		];
+		$this->assertEquals($expected, $this->Edexml->convertTeacher($data));
+
+		$data = [
+			'@key' => 'key',
+			'achternaam' => 'Achternaam',
+			'voorletters-1' => 'KLM',
+			'emailadres' => 'roepnaam@achternaam.com',
+		];
+		$expected = [
+			'key' => 'key',
+			'last_name' => 'Achternaam',
+			'first_name' => 'KLM',
+			'date_of_birth' => null,
+			'gender' => null,
+			'grade' => null,
+			'email_address' => 'roepnaam@achternaam.com',
+			'SchoolClass' => []
+		];
+		$this->assertEquals($expected, $this->Edexml->convertTeacher($data));
+
+		$data = [
+			'@key' => 'key',
+			'achternaam' => 'Achternaam',
+			'voornamen' => 'Roepnaam1 Roepnaam2',
+			'emailadres' => 'roepnaam@achternaam.com',
+		];
+		$expected = [
+			'key' => 'key',
+			'last_name' => 'Achternaam',
+			'first_name' => 'Roepnaam1 Roepnaam2',
 			'date_of_birth' => null,
 			'gender' => null,
 			'grade' => null,
