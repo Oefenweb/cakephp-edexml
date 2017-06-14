@@ -218,13 +218,13 @@ class Edexml extends AppModel {
 			$result['last_name'] .= $user['achternaam'];
 		}
 
-		if (empty($user['first_name']) && !empty($user['roepnaam'])) {
+		if (empty($result['first_name']) && !empty($user['roepnaam'])) {
 			$result['first_name'] = $user['roepnaam'];
 		}
-		if (empty($user['first_name']) && !empty($user['voornamen'])) {
+		if (empty($result['first_name']) && !empty($user['voornamen'])) {
 			$result['first_name'] = $user['voornamen'];
 		}
-		if (empty($user['first_name']) && !empty($user['voorletters-1'])) {
+		if (empty($result['first_name']) && !empty($user['voorletters-1'])) {
 			$result['first_name'] = $user['voorletters-1'];
 		}
 
