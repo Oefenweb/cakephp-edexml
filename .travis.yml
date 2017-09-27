@@ -51,14 +51,14 @@ branches:
     - master
 
 before_script:
-  - git clone -b master https://github.com/Oefenweb/travis --depth 1 ../travis
-  - ../travis/before_script.sh
+  - git clone -b fix-for-includephpunit-autoloadphp-failed-to-open-stream https://github.com/Oefenweb/travis --depth 1 ../travis
+  - travis_wait /usr/bin/env bash -x ../travis/before_script.sh
 
 script:
-  - ../travis/script.sh
+  - /usr/bin/env bash -x ../travis/script.sh
 
 after_success:
-  - ../travis/after_success.sh
+  - /usr/bin/env bash -x ../travis/after_success.sh
 
 notifications:
   email: false
