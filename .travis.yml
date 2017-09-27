@@ -52,7 +52,7 @@ branches:
 
 before_script:
   - git clone -b master https://github.com/Oefenweb/travis --depth 1 ../travis
-  - travis_wait ../travis/before_script.sh
+  - ../travis/before_script.sh
 
 script:
   - ../travis/script.sh
