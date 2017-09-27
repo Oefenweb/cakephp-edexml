@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ================================================================== -->
+<!--* Voorbeeld XML voor EDEXML 2.1
+    
+        EDEXML.Voorbeeld.2.1.xml (versie 2017-02-17)
+        
+        Wijzigingshistorie:
+        20170217: eerste versie voor EDEXML v2.1 met eckid en rol "TAL".
+        20151110: eerste versie voor EDEXML v2.0.
+	-->
+<!-- ================================================================== -->
+<!-- -->
+<EDEX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDEXML.structuur.xsd">
+	<school>
+		<schooljaar>2014-2015</schooljaar>
+		<peildatum>2014-10-01</peildatum>
+		<brincode>99ZZ</brincode>
+		<dependancecode>00</dependancecode>
+		<schoolkey>41323</schoolkey>
+		<aanmaakdatum>2014-11-25T14:33:33</aanmaakdatum>
+		<auteur>Geert Evers</auteur>
+		<xsdversie>2.1</xsdversie>
+		<commentaar>Voorbeeld bij EDEXML schema versie 2.1</commentaar>
+	</school>
+	<vestigingen>
+		<vestiging key="VH">
+			<naam>Vestiging Huissen</naam>
+		</vestiging>
+		<vestiging key="VB">
+			<naam>Vestiging Bemmel</naam>
+		</vestiging>
+	</vestigingen>
+	<groepen>
+		<groep key="001">
+			<naam>Kabouters</naam>
+			<jaargroep>0</jaargroep>
+		</groep>
+		<samengestelde_groep key="sg3">
+			<naam>Samgroep 3</naam>
+		</samengestelde_groep>
+		<groep key="002">
+			<naam>Muizen</naam>
+			<jaargroep>1</jaargroep>
+		</groep>
+		<groep key="003">
+			<naam>Vlinders</naam>
+			<jaargroep>1</jaargroep>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>Opmerking X</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+		</groep>
+		<groep key="GRP4A">
+			<naam>4A</naam>
+			<jaargroep>4</jaargroep>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>Opmerking X</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+		</groep>
+		<groep key="GRP4B">
+			<naam>4B</naam>
+			<jaargroep>4</jaargroep>
+		</groep>
+		<samengestelde_groep key="sg1">
+			<naam>Samgroep 1</naam>
+		</samengestelde_groep>
+		<samengestelde_groep key="sg2">
+			<naam>Samgroep 2</naam>
+		</samengestelde_groep>
+	</groepen>
+	<leerlingen>
+		<leerling key="00001" eckid="https://id.school/LL_123467890abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^_-">
+			<roepnaam>Wimpie</roepnaam>
+			<geboortedatum>2006-06-21</geboortedatum>
+			<geslacht>1</geslacht>
+			<start_ondw_jgr3>2013-08-16</start_ondw_jgr3>
+			<jaargroep>4</jaargroep>
+			<groep key="GRP4B"/>
+			<samengestelde_groepen>
+				<samengestelde_groep key="sg1"/>
+				<samengestelde_groep key="sg2"/>
+			</samengestelde_groepen>
+			<vestiging key="VH"/>
+			<mutatiedatum>2014-09-07T08:47:34</mutatiedatum>
+		</leerling>
+		<leerling key="00002">
+			<achternaam>Assati</achternaam>
+			<voornamen>Ismaël Hassan</voornamen>
+			<voorletters-1>IH</voorletters-1>
+			<geslacht>0</geslacht>
+			<jaargroep>4</jaargroep>
+			<vestiging key="VB"/>
+			<land>MA</land>
+			<bsn>133456785</bsn>
+			<gewicht_nieuw>0,3</gewicht_nieuw>
+			<postcodenl>6971VB</postcodenl>
+			<instroomdatum>2013-08-25</instroomdatum>
+			<mutatiedatum>2014-10-14T08:47:35</mutatiedatum>
+		</leerling>
+		<leerling key="12345">
+			<achternaam>Hof</achternaam>
+			<voorvoegsel>van 't</voorvoegsel>
+			<voorletters-1>G</voorletters-1>
+			<roepnaam>Gradje</roepnaam>
+			<geboortedatum>2006-06-21</geboortedatum>
+			<geslacht>1</geslacht>
+			<jaargroep>H</jaargroep>
+			<land>NL</land>
+			<land_vader>NL</land_vader>
+			<land_moeder>NL</land_moeder>
+			<bsn_ondwnr-4>2731</bsn_ondwnr-4>
+			<instroomdatum>2010-08-19</instroomdatum>
+			<uitstroomdatum>2014-07-18</uitstroomdatum>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>Opmerking X</code>
+					<opmerking/>
+				</blok>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>Opmerking Y</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+			<mutatiedatum>2013-06-17T08:47:36</mutatiedatum>
+		</leerling>
+	</leerlingen>
+	<leerkrachten>
+		<leerkracht key="LK1" eckid="https://id.school/LK_abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ123467890!@#$%^_-">
+			<achternaam>Bemmel</achternaam>
+			<voorvoegsel>van</voorvoegsel>
+			<voorletters-1>J</voorletters-1>
+			<rol>TAL</rol>
+			<groepen>
+				<groep key="GRP4A"/>
+			</groepen>
+		</leerkracht>
+		<leerkracht key="LK2" eckid="https://id.school/abcde">
+			<achternaam>Veldman</achternaam>
+			<voorletters-1>UGH</voorletters-1>
+			<roepnaam>Uilke</roepnaam>
+			<rolomschrijving>Manusje van alles</rolomschrijving>
+			<groepen>
+				<groep key="002"/>
+				<samengestelde_groep key="sg1"/>
+				<groep key="001"/>
+				<samengestelde_groep key="sg2"/>
+				<samengestelde_groep key="sg3"/>
+			</groepen>
+		</leerkracht>
+		<leerkracht key="LK3">
+			<roepnaam>Lia</roepnaam>
+			<groepen>
+				<groep key="GRP4A">
+					<rol>STA</rol>
+					<rol>OWA</rol>
+				</groep>
+			</groepen>
+		</leerkracht>
+	</leerkrachten>
+</EDEX>

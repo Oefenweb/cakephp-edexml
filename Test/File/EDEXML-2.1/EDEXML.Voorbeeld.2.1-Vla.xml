@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDEX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDEXML.structuur.xsd">
+	<school>
+		<schooljaar>2014-2015</schooljaar>
+		<instellingsnummer>1234</instellingsnummer>
+		<schoolkey>41323</schoolkey>
+		<aanmaakdatum>2014-09-22T08:33:33</aanmaakdatum>
+		<auteur>Geert Evers</auteur>
+		<xsdversie>2.1</xsdversie>
+		<commentaar>Voorbeeldschool. Dit EDEXML databestand is een voorbeeld bij EDEXML schema versie 2.1 Vlaanderen</commentaar>
+	</school>
+	<groepen>
+		<samengestelde_groep key="sg1">
+			<naam>sg 1</naam>
+		</samengestelde_groep>
+		<samengestelde_groep key="sg2">
+			<naam>sg 2</naam>
+		</samengestelde_groep>
+		<groep key="001">
+			<naam>Kabouters</naam>
+			<jaargroep>0</jaargroep>
+		</groep>
+		<groep key="002">
+			<naam>Muizen</naam>
+			<jaargroep>1</jaargroep>
+		</groep>
+		<groep key="003">
+			<naam>Vlinders</naam>
+			<jaargroep>1</jaargroep>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>x</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+		</groep>
+		<groep key="KL4A">
+			<naam>Klas 4A</naam>
+			<jaargroep>6</jaargroep>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>In Vlaanderen komt Klas 4 overeen met de Nederlandse groep 6</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+		</groep>
+		<groep key="KL4B">
+			<naam>Klas 4B</naam>
+			<jaargroep>6</jaargroep>
+		</groep>
+	</groepen>
+	<leerlingen>
+		<leerling key="00001">
+			<roepnaam>Wimpie</roepnaam>
+			<geboortedatum>2006-06-21</geboortedatum>
+			<geslacht>1</geslacht>
+			<jaargroep>6</jaargroep>
+			<groep key="KL4B"/>
+			<samengestelde_groepen>
+				<samengestelde_groep key="sg1"/>
+				<samengestelde_groep key="sg2"/>
+			</samengestelde_groepen>
+			<mutatiedatum>2014-10-10T08:47:34</mutatiedatum>
+		</leerling>
+		<leerling key="00002">
+			<achternaam>Assati</achternaam>
+			<voornamen>Ismaël Hassan</voornamen>
+			<voorletters-1>IMA</voorletters-1>
+			<geslacht>0</geslacht>
+			<jaargroep>6</jaargroep>
+			<land>MA</land>
+			<rijksregisternummer>13345678512</rijksregisternummer>
+			<postnummerbe>6971</postnummerbe>
+			<instroomdatum>2011-08-25</instroomdatum>
+			<mutatiedatum>2014-10-14T08:47:35</mutatiedatum>
+		</leerling>
+		<leerling key="12345">
+			<achternaam>Einde</achternaam>
+			<voorvoegsel>van 't</voorvoegsel>
+			<voorletters-1>G</voorletters-1>
+			<roepnaam>Gradje</roepnaam>
+			<geboortedatum>2004-02-20</geboortedatum>
+			<geslacht>1</geslacht>
+			<jaargroep>H</jaargroep>
+			<land>NL</land>
+			<land_vader>NL</land_vader>
+			<land_moeder>NL</land_moeder>
+			<instroomdatum>2007-08-19</instroomdatum>
+			<uitstroomdatum>2012-05-30</uitstroomdatum>
+			<toevoegingen>
+				<blok xsi:type="OpmerkingGegevensType">
+					<code>bla bla</code>
+					<opmerking/>
+				</blok>
+			</toevoegingen>
+			<mutatiedatum>2014-10-14T08:47:36</mutatiedatum>
+		</leerling>
+	</leerlingen>
+	<leerkrachten>
+		<leerkracht key="LK1">
+			<achternaam>Gent</achternaam>
+			<voorvoegsel>van</voorvoegsel>
+			<voorletters-1>J</voorletters-1>
+			<groepen>
+				<groep key="KL4A"/>
+			</groepen>
+		</leerkracht>
+		<leerkracht key="LK2">
+			<achternaam>Veldman</achternaam>
+			<voorvoegsel>ter</voorvoegsel>
+			<roepnaam>Uilke</roepnaam>
+			<groepen>
+				<groep key="002"/>
+				<samengestelde_groep key="sg1"/>
+				<groep key="001"/>
+				<samengestelde_groep key="sg2"/>
+			</groepen>
+		</leerkracht>
+		<leerkracht key="LK3">
+			<roepnaam>Lia</roepnaam>
+		</leerkracht>
+	</leerkrachten>
+</EDEX>
