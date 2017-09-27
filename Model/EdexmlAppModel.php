@@ -1,16 +1,9 @@
 <?php
-/**
- * Edexml App Model
- *
- * PHP 5
- *
- **/
 App::uses('AppModel', 'Model');
 
 /**
- * Class EdexmlAppModel
+ * Edexml App Model.
  *
  */
 class EdexmlAppModel extends AppModel {
-
 }

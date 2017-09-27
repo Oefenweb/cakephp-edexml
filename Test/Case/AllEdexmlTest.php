@@ -1,6 +1,7 @@
 <?php
 /**
- * All Edexml plugin tests
+ * All Edexml plugin tests.
+ *
  */
 class AllEdexmlTest extends CakeTestCase {
 
@@ -17,5 +18,4 @@ class AllEdexmlTest extends CakeTestCase {
 
 		return $suite;
 	}
-
 }

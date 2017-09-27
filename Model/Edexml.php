@@ -1,15 +1,9 @@
 <?php
-/**
- * Edexml Model
- *
- * PHP 5
- *
- **/
 App::uses('AppModel', 'Model');
 App::uses('Xml', 'Utility');
 
 /**
- * Edexml Model
+ * Edexml Model.
  *
  */
 class Edexml extends AppModel {
@@ -114,27 +108,31 @@ class Edexml extends AppModel {
  * Convert XML file to DOMDocument and validate against Edexml XSD
  *
  * @param string $filename Filename of XML file
- * @return mixed A DOMDocument (DOMDocument), or false (boolean) on validation errors
+ * @return bool|DOMDocument A DOMDocument, or false on validation errors
  */
 	protected function _parse($filename) {
-		$dom = false;
-		if (file_exists($filename)) {
-			// Enable user error handling
-			libxml_use_internal_errors(true);
+		if (!file_exists($filename)) {
+			return false;
+		}
+
+		// Enable user error handling
+		libxml_use_internal_errors(true);
+		libxml_clear_errors();
+
+		$dom = Xml::build($filename, ['return' => 'domdocument']);
+		if (!$dom) {
+			return false;
+		}
+
+		$schemaFile = CakePlugin::path('Edexml') . 'File' . DS . 'EDEXML-2.1' . DS . 'EDEXML.structuur.xsd';
+		if (!$dom->schemaValidate($schemaFile)) {
+			foreach (libxml_get_errors() as $error) {
+				CakeLog::error($this->_displayXmlError($error), 'debug');
+			}
+
 			libxml_clear_errors();
 
-			$dom = Xml::build($filename, ['return' => 'domdocument']);
-			if ($dom) {
-				$schemaFile = CakePlugin::path('Edexml') . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.structuur.xsd';
-				if (!$dom->schemaValidate($schemaFile)) {
-					$dom = false;
-					foreach (libxml_get_errors() as $error) {
-						CakeLog::error($this->_displayXmlError($error), 'debug');
-					}
-
-					libxml_clear_errors();
-				}
-			}
+			return false;
 		}
 
 		return $dom;
@@ -412,5 +410,4 @@ class Edexml extends AppModel {
 
 		return $result;
 	}
-
 }

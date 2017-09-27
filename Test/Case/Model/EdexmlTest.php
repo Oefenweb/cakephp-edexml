@@ -74,31 +74,32 @@ class TestEdexml extends Edexml {
 }
 
 /**
- * Edexml Test
+ * Edexml Test.
  *
+ * @property TestEdexml $Edexml
  */
 class EdexmlTest extends CakeTestCase {
 
 /**
- * Fixtures
+ * Fixtures.
  *
  * @var array
  */
 	public $fixtures = [];
 
 /**
- * setUp method
+ * setUp method.
  *
  * @return void
  */
 	public function setUp() {
 		parent::setUp();
 
-		$this->Edexml = ClassRegistry::init('TestEdexml');
+		$this->Edexml = ClassRegistry::init('TestEdexml', true);
 	}
 
 /**
- * tearDown method
+ * tearDown method.
  *
  * @return void
  */
@@ -315,41 +316,41 @@ class EdexmlTest extends CakeTestCase {
 			'roepnaam' => 'Roepnaam',
 			'geslacht' => '2'
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('Achternaam', $result['last_name']);
-		$this->assertEquals('f', $result['gender']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Achternaam', $actual['last_name']);
+		$this->assertEquals('f', $actual['gender']);
 
 		$data = [
 			'achternaam' => 'Achternaam',
 			'roepnaam' => 'Roepnaam',
 			'geslacht' => '9'
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('Achternaam', $result['last_name']);
-		$this->assertNull($result['gender']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Achternaam', $actual['last_name']);
+		$this->assertNull($actual['gender']);
 
 		$data = [
 			'achternaam' => 'Achternaam',
 			'voorvoegsel' => 'Voorvoegsel',
 			'roepnaam' => 'Roepnaam'
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('Voorvoegsel Achternaam', $result['last_name']);
-		$this->assertEquals('Roepnaam', $result['first_name']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Voorvoegsel Achternaam', $actual['last_name']);
+		$this->assertEquals('Roepnaam', $actual['first_name']);
 
 		$data = [
 			'achternaam' => 'Achternaam',
 			'voorletters-1' => 'KLM',
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('KLM', $result['first_name']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('KLM', $actual['first_name']);
 
 		$data = [
 			'achternaam' => 'Achternaam',
 			'voornamen' => 'Voornaam1 Voornaam2',
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('Voornaam1 Voornaam2', $result['first_name']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Voornaam1 Voornaam2', $actual['first_name']);
 
 		$data = [
 			'achternaam' => 'Achternaam',
@@ -357,8 +358,8 @@ class EdexmlTest extends CakeTestCase {
 			'voornamen' => 'Voornaam1 Voornaam2',
 			'voorletters-1' => 'KLM',
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertEquals('Roepnaam', $result['first_name']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertEquals('Roepnaam', $actual['first_name']);
 
 		// Check dummy key for example #001
 		// TODO: what to do when there are no identifiers?
@@ -368,8 +369,8 @@ class EdexmlTest extends CakeTestCase {
 			'voorvoegsel' => 'Voorvoegsel',
 			'roepnaam' => 'Roepnaam'
 		];
-		$result = $this->Edexml->convertStudent($data);
-		$this->assertNull($result['key']);
+		$actual = $this->Edexml->convertStudent($data);
+		$this->assertNull($actual['key']);
 	}
 
 /**
@@ -456,17 +457,19 @@ class EdexmlTest extends CakeTestCase {
  * @return void
  */
 	public function testParseToArray() {
-		$this->assertFalse($this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample-invalid.xml'));
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample-invalid.xml';
+		$this->assertFalse($this->Edexml->parseToArray($filename));
 
-		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample.xml');
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-1.0.3' . DS . 'sample.xml';
+		$data = $this->Edexml->parseToArray($filename);
 		$this->assertTrue((bool)$data);
 
-		$result = $this->Edexml->convert($data);
-		$this->assertTrue((bool)$result);
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$actual);
 
-		$this->assertEquals(count($data['EDEX']['leerlingen']['leerling']), count($result['Student']));
-		$this->assertEquals(count($data['EDEX']['groepen']['groep']), count($result['SchoolClass']));
-		$this->assertEquals(count($data['EDEX']['leerkrachten']['leerkracht']), count($result['Teacher']));
+		$this->assertEquals(count($data['EDEX']['leerlingen']['leerling']), count($actual['Student']));
+		$this->assertEquals(count($data['EDEX']['groepen']['groep']), count($actual['SchoolClass']));
+		$this->assertEquals(count($data['EDEX']['leerkrachten']['leerkracht']), count($actual['Teacher']));
 	}
 
 /**
@@ -477,11 +480,12 @@ class EdexmlTest extends CakeTestCase {
  * @return void
  */
 	public function testParseToArrayEdexml20SampleFile() {
-		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0.xml');
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0.xml';
+		$data = $this->Edexml->parseToArray($filename);
 		$this->assertTrue((bool)$data);
 
-		$result = $this->Edexml->convert($data);
-		$this->assertTrue((bool)$result);
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$actual);
 	}
 
 /**
@@ -492,11 +496,44 @@ class EdexmlTest extends CakeTestCase {
  * @return void
  */
 	public function testParseToArrayEdexml20VlaSampleFile() {
-		$data = $this->Edexml->parseToArray(CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0-Vla.xml');
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.0' . DS . 'EDEXML.Voorbeeld.2.0-Vla.xml';
+		$data = $this->Edexml->parseToArray($filename);
 		$this->assertTrue((bool)$data);
 
-		$result = $this->Edexml->convert($data);
-		$this->assertTrue((bool)$result);
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$actual);
+	}
+
+/**
+ * Tests `parseToArray`.
+ *
+ *  Edex 2.1.
+ *
+ * @return void
+ */
+	public function testParseToArrayEdexml21SampleFile() {
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.1' . DS . 'EDEXML.Voorbeeld.2.1.xml';
+		$data = $this->Edexml->parseToArray($filename);
+		$this->assertTrue((bool)$data);
+
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$actual);
+	}
+
+/**
+ * Tests `parseToArray`.
+ *
+ *  Edex 2.1.
+ *
+ * @return void
+ */
+	public function testParseToArrayEdexml21VlaSampleFile() {
+		$filename = CakePlugin::path('Edexml') . 'Test' . DS . 'File' . DS . 'EDEXML-2.1' . DS . 'EDEXML.Voorbeeld.2.1-Vla.xml';
+		$data = $this->Edexml->parseToArray($filename);
+		$this->assertTrue((bool)$data);
+
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue((bool)$actual);
 	}
 
 /**
@@ -559,10 +596,9 @@ class EdexmlTest extends CakeTestCase {
 			]
 		];
 
-		$result = $this->Edexml->convert($data);
-		$this->assertTrue(Hash::numeric(array_keys($result['SchoolClass'])));
-		$this->assertTrue(Hash::numeric(array_keys($result['Student'])));
-		$this->assertTrue(Hash::numeric(array_keys($result['Teacher'])));
+		$actual = $this->Edexml->convert($data);
+		$this->assertTrue(Hash::numeric(array_keys($actual['SchoolClass'])));
+		$this->assertTrue(Hash::numeric(array_keys($actual['Student'])));
+		$this->assertTrue(Hash::numeric(array_keys($actual['Teacher'])));
 	}
-
 }
