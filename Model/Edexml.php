@@ -297,9 +297,15 @@ class Edexml extends AppModel {
 			'grade' => null,
 			'SchoolClass' => []
 		];
+
 		if (!empty($student['@key'])) {
 			$result['key'] = $this->_convertKey($student['@key']);
 		}
+
+		if (!empty($student['@eckid'])) {
+			$result['eckid'] = $student['@eckid'];
+		}
+
 		$result = array_merge($result, $this->_convertNames($student));
 		if (!empty($student['geboortedatum'])) {
 			if (strtotime($student['geboortedatum'])) {
@@ -348,6 +354,10 @@ class Edexml extends AppModel {
 
 		if (!empty($teacher['@key'])) {
 			$result['key'] = $this->_convertKey($teacher['@key']);
+		}
+
+		if (!empty($teacher['@eckid'])) {
+			$result['eckid'] = $teacher['@eckid'];
 		}
 
 		$result = array_merge($result, $this->_convertNames($teacher));

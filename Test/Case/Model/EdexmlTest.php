@@ -266,6 +266,26 @@ class EdexmlTest extends CakeTestCase {
 
 		$data = [
 			'@key' => 'key',
+			'@eckid' => 'https://id.school/LL_123467890abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^_-',
+			'achternaam' => 'Achternaam',
+			'roepnaam' => 'Roepnaam',
+			'geboortedatum' => '2005-07-19',
+			'geslacht' => '0'
+		];
+		$expected = [
+			'key' => 'key',
+			'eckid' => 'https://id.school/LL_123467890abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^_-',
+			'last_name' => 'Achternaam',
+			'first_name' => 'Roepnaam',
+			'date_of_birth' => '2005-07-19',
+			'gender' => null,
+			'grade' => null,
+			'SchoolClass' => []
+		];
+		$this->assertEquals($expected, $this->Edexml->convertStudent($data));
+
+		$data = [
+			'@key' => 'key',
 			'achternaam' => 'Achternaam',
 			'roepnaam' => 'Roepnaam',
 			'geboortedatum' => '2005-07-19',
@@ -386,6 +406,25 @@ class EdexmlTest extends CakeTestCase {
 		];
 		$expected = [
 			'key' => 'key',
+			'last_name' => 'Achternaam',
+			'first_name' => 'Roepnaam',
+			'date_of_birth' => null,
+			'gender' => null,
+			'grade' => null,
+			'email_address' => null,
+			'SchoolClass' => []
+		];
+		$this->assertEquals($expected, $this->Edexml->convertTeacher($data));
+
+		$data = [
+			'@key' => 'key',
+			'@eckid' => 'https://id.school/LK_abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ123467890!@#$%^_-',
+			'achternaam' => 'Achternaam',
+			'roepnaam' => 'Roepnaam',
+		];
+		$expected = [
+			'key' => 'key',
+			'eckid' => 'https://id.school/LK_abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ123467890!@#$%^_-',
 			'last_name' => 'Achternaam',
 			'first_name' => 'Roepnaam',
 			'date_of_birth' => null,
