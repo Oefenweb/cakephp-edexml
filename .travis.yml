@@ -51,7 +51,7 @@ branches:
     - master
 
 before_script:
-  - git clone -b fix-for-includephpunit-autoloadphp-failed-to-open-stream https://github.com/Oefenweb/travis --depth 1 ../travis
+  - git clone -b master https://github.com/Oefenweb/travis --depth 1 ../travis
   - travis_wait ../travis/before_script.sh
 
 script:

@@ -1,6 +1,6 @@
 # Edexml plugin for CakePHP
 
-[![Build Status](https://travis-ci.org/Oefenweb/cakephp-edexml.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![PHP 7 ready](http://php7ready.timesplinter.ch/Oefenweb/cakephp-edexml/badge.svg)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![Coverage Status](https://coveralls.io/repos/Oefenweb/cakephp-edexml/badge.png)](https://coveralls.io/r/Oefenweb/cakephp-edexml) [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-edexml.svg)](https://packagist.org/packages/oefenweb/cakephp-edexml) [![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-edexml/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-edexml)
+[![Build Status](https://travis-ci.org/Oefenweb/cakephp-edexml.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![PHP 7 ready](http://php7ready.timesplinter.ch/Oefenweb/cakephp-edexml/badge.svg)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![Coverage Status](https://codecov.io/gh/Oefenweb/cakephp-edexml/branch/master/graph/badge.svg)](https://codecov.io/gh/Oefenweb/cakephp-edexml) [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-edexml.svg)](https://packagist.org/packages/oefenweb/cakephp-edexml) [![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-edexml/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-edexml)
 
 ## Requirements
 
