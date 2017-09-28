@@ -1,16 +1,9 @@
 <?php
-/**
- * Edexml App Controller
- *
- * PHP 5
- *
- **/
 App::uses('AppController', 'Controller');
 
 /**
- * Class EdexmlAppController
+ * Edexml App Controller.
  *
  */
 class EdexmlAppController extends AppController {
-
 }
