@@ -1,11 +1,15 @@
 # Edexml plugin for CakePHP
 
-[![Build Status](https://travis-ci.org/Oefenweb/cakephp-edexml.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![PHP 7 ready](http://php7ready.timesplinter.ch/Oefenweb/cakephp-edexml/badge.svg)](https://travis-ci.org/Oefenweb/cakephp-edexml) [![Coverage Status](https://codecov.io/gh/Oefenweb/cakephp-edexml/branch/master/graph/badge.svg)](https://codecov.io/gh/Oefenweb/cakephp-edexml) [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-edexml.svg)](https://packagist.org/packages/oefenweb/cakephp-edexml) [![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-edexml/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-edexml)
+[![Build Status](https://travis-ci.org/Oefenweb/cakephp-edexml.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-edexml)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/Oefenweb/cakephp-edexml/badge.svg)](https://travis-ci.org/Oefenweb/cakephp-edexml)
+[![Coverage Status](https://codecov.io/gh/Oefenweb/cakephp-edexml/branch/master/graph/badge.svg)](https://codecov.io/gh/Oefenweb/cakephp-edexml)
+[![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-edexml.svg)](https://packagist.org/packages/oefenweb/cakephp-edexml)
+[![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-edexml/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-edexml)
 
 ## Requirements
 
-* CakePHP 2.6.0 or greater.
-* PHP 5.4.16 or greater.
+* CakePHP 2.9.0 or greater.
+* PHP 7.0.0 or greater.
 
 ## Installation
 
@@ -26,20 +30,20 @@ CakePlugin::load('Edexml');
 First include the plugin model in your controller:
 
 ```
-public $uses = array('Edexml.Edexml');
+public $uses = ['Edexml.Edexml'];
 ```
 
 Validate Edexml file:
 
 ```
-$this->Edexml->saveAll($this->request->data, array('validate' => 'only'))
+$this->Edexml->saveAll($this->request->data, ['validate' => 'only']);
 ```
 
 And in the corresponding view:
 
 ```
-echo $this->Form->create('Edexml.Edexml', array('type' => 'file'));
-echo $this->Form->input('file', array('type' => 'file'));
+echo $this->Form->create('Edexml.Edexml', ['type' => 'file']);
+echo $this->Form->input('file', ['type' => 'file']);
 echo $this->Form->end(__('Submit'));
 ```
 
@@ -48,7 +52,7 @@ echo $this->Form->end(__('Submit'));
 First include the plugin model in your controller:
 
 ```
-public $uses = array('Edexml.Edexml');
+public $uses = ['Edexml.Edexml'];
 ```
 
 Convert the Edexml file:
