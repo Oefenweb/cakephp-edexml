@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ================================================================== -->
 <!--* Voorbeeld XML voor EDEXML 2.1
-    
+
         EDEXML.Voorbeeld.2.1.xml (versie 2017-02-17)
-        
+
         Wijzigingshistorie:
         20170217: eerste versie voor EDEXML v2.1 met eckid en rol "TAL".
         20151110: eerste versie voor EDEXML v2.0.
@@ -75,6 +75,9 @@
 	</groepen>
 	<leerlingen>
 		<leerling key="00001" eckid="https://id.school/LL_123467890abcdefghijklmnopqrstuvwxzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^_-">
+			<achternaam>ie</achternaam>
+			<voorvoegsel>imp</voorvoegsel>
+			<voorletters-1>W</voorletters-1>
 			<roepnaam>Wimpie</roepnaam>
 			<geboortedatum>2006-06-21</geboortedatum>
 			<geslacht>1</geslacht>
@@ -134,6 +137,7 @@
 			<achternaam>Bemmel</achternaam>
 			<voorvoegsel>van</voorvoegsel>
 			<voorletters-1>J</voorletters-1>
+			<roepnaam>Julia</roepnaam>
 			<rol>TAL</rol>
 			<groepen>
 				<groep key="GRP4A"/>
@@ -153,6 +157,9 @@
 			</groepen>
 		</leerkracht>
 		<leerkracht key="LK3">
+			<achternaam>Bruin</achternaam>
+			<voorvoegsel>de</voorvoegsel>
+			<voorletters-1>L</voorletters-1>
 			<roepnaam>Lia</roepnaam>
 			<groepen>
 				<groep key="GRP4A">
