@@ -1,8 +1,6 @@
 language: php
 
 php:
-  - 7.0
-  - 7.1
   - 7.2
 
 env:
@@ -20,13 +18,13 @@ env:
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.2
       env:
         - CODECOVERAGE=1 PHPUNIT_VERSION=^5.7
-    - php: 7.1
+    - php: 7.2
       env:
         - PHPCS=1
-    - php: 7.1
+    - php: 7.2
       env:
         - FOC_VALIDATE=1
   exclude:
