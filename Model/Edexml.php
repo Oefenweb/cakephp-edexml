@@ -45,7 +45,7 @@ class Edexml extends AppModel {
 				'last' => true
 			],
 			'mimeType' => [
-				'rule' => ['mimeType', ['text/xml']],
+				'rule' => ['mimeType', ['application/xml', 'text/xml']],
 				'message' => 'Must be of type `xml`'
 			],
 			'edexml' => [
